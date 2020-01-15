@@ -1,0 +1,3 @@
+# Project exclude paths
+/LSpringBoot/src/main/resources/static/
+/LSpringBoot/target/
