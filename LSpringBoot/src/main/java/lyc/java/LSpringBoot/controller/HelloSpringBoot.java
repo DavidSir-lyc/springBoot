@@ -42,8 +42,14 @@ public class HelloSpringBoot {
 
 
     // 集成mybatis，数据库查询数据
-    @RequestMapping(value = "/getNameById", method = RequestMethod.GET)
-    public Object getNameByIdFun(int id) {
-        return studentsMapper.getNameById(id);
+    @RequestMapping(value = "/getUserById", method = RequestMethod.GET)
+    public Object getUserByIdFun(int id) {
+        return studentsMapper.getUserById(id);
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
+    public Object addUser(int id, String name,int gender, int grade, int score) {
+        studentsMapper.addUser(id, name, gender, grade, score);
+        return "插入成功！";
     }
 }

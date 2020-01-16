@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface StudentsMapper {
     @Select(value = "select * from students where id = #{id}")
-    Students getNameById(@Param("id") int id);
+    Students getUserById(@Param("id") int id);
 
+    @Insert(value = "insert into students values (#{id}, #{name}, #{gender}, #{grade}, #{score})")
+    void addUser(@Param("id")int id, @Param("name")String name, @Param("gender")int gender, @Param("grade")int grade, @Param("score")int score);
 }
