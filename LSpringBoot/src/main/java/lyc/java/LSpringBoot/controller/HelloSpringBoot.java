@@ -48,8 +48,20 @@ public class HelloSpringBoot {
     }
 
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public Object addUser(int id, String name,int gender, int grade, int score) {
+    public Object addUser(int id, String name,int gender, int grade, double score) {
         studentsMapper.addUser(id, name, gender, grade, score);
         return "插入成功！";
+    }
+
+    @RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+    public Object updateUser(int id, String name,int gender, int grade, double score) {
+        studentsMapper.updateUser(id, name, gender, grade, score);
+        return "修改成功！";
+    }
+
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
+    public Object deleteUser(int id) {
+        studentsMapper.deleteUser(id);
+        return "删除成功！";
     }
 }
