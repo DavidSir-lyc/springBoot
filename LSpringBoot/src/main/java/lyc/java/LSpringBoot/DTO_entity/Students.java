@@ -1,4 +1,4 @@
-package lyc.java.LSpringBoot.entity_DTO;
+package lyc.java.LSpringBoot.DTO_entity;
 
 
 public class Students {

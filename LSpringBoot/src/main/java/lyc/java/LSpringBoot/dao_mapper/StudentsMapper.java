@@ -1,6 +1,6 @@
 package lyc.java.LSpringBoot.dao_mapper;
 
-import lyc.java.LSpringBoot.entity_DTO.Students;
+import lyc.java.LSpringBoot.DTO_entity.Students;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
