@@ -2,6 +2,7 @@ package lyc.java.LSpringBoot.controller;
 
 import lyc.java.LSpringBoot.dao_mapper.StudentsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 public class HelloSpringBoot {
     @Autowired
     private StudentsMapper studentsMapper;
-
 
     //通过RequestMethod.GET表示请求需要时GET方式
     @RequestMapping(value = "/getReq", method = RequestMethod.GET)
@@ -41,27 +41,40 @@ public class HelloSpringBoot {
     }
 
 
-    // 集成mybatis，数据库查询数据
+    // 集成mybatis--->select
     @RequestMapping(value = "/getUserById", method = RequestMethod.GET)
-    public Object getUserByIdFun(int id) {
-        return studentsMapper.getUserById(id);
+    public Object selectUser(int id) {
+        return studentsMapper.selectUser(id);
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public Object addUser(int id, String name,int gender, int grade, double score) {
-        studentsMapper.addUser(id, name, gender, grade, score);
+    // 集成mybatis--->insert
+    @RequestMapping(value = "/insertUser", method = RequestMethod.GET)
+    public Object insertUser(int id, String name,int gender, int grade, double score) {
+        studentsMapper.insertUser(id, name, gender, grade, score);
         return "插入成功！";
     }
 
+    // 集成mybatis--->update
     @RequestMapping(value = "/updateUser", method = RequestMethod.GET)
     public Object updateUser(int id, String name,int gender, int grade, double score) {
         studentsMapper.updateUser(id, name, gender, grade, score);
         return "修改成功！";
     }
 
+    // 集成mybatis--->delete
     @RequestMapping(value = "/deleteUser", method = RequestMethod.GET)
     public Object deleteUser(int id) {
         studentsMapper.deleteUser(id);
         return "删除成功！";
+    }
+
+    // 集成mybatis--->事务
+    @Transactional
+    @RequestMapping(value = "/commitUser", method = RequestMethod.GET)
+    public Object commitUser(int id, String name,int gender, int grade, double score) {
+        studentsMapper.insertUser(id, name, gender, grade, score);
+        // int num = 2/0;
+        studentsMapper.deleteUser(id);
+        return "事务成功！";
     }
 }
