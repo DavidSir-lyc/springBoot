@@ -1,15 +1,21 @@
-#之前properties配置
+#涔嬪墠properties閰嶇疆
 #spring.datasource.url=jdbc:mysql://127.0.0.1:3306/learnjdbc
 #spring.datasource.username=root
 #spring.datasource.password=lyc1415926
 #spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-#自定义配置mapper
+#鑷畾涔夐厤缃甿apper
 #mybatis.mapper-location=classpath:mapper/*.xml
 
 # DB Configurationspring:
+server:
+  port: 8081
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/learnjdbc?useUnicode=true&characterEncoding=utf8
     username: root
     password: lyc1415926
+  application:
+    name: dev-server
+  profiles:
+    active: dev
