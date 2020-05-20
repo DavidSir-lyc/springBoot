@@ -1,8 +1,13 @@
 package lyc.java.LSpringBoot.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lyc.java.LSpringBoot.dao.UserMapper;
+import lyc.java.LSpringBoot.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -18,6 +23,15 @@ public class UserCtrl {
         m.put(1, query);
         return m;
     }*/
+
+    @GetMapping("/getAllUser")
+    public Object getAllUser(@RequestParam(value = "pageNo",required = false,defaultValue = "1") Integer pageNo, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
+        List<User> getAllUser = userMapper.selectAll();
+        PageInfo<User> pageInfo = new PageInfo<>(getAllUser);
+        return pageInfo;
+    }
+
     @GetMapping("/getUserById")
     public Object selectUser(@RequestParam(value = "id",required = false,defaultValue = "1") String id) {
         return userMapper.selectUser(id);

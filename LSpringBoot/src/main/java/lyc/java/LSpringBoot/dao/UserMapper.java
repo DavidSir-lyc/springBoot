@@ -3,6 +3,8 @@ package lyc.java.LSpringBoot.dao;
 import lyc.java.LSpringBoot.dto.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     /*@Select(value = "select * from user where id = #{id}")
@@ -19,4 +21,5 @@ public interface UserMapper {
 
     User selectUser(@Param("id") String id);
 
+    List<User> selectAll();
 }

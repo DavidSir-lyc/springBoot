@@ -4,7 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--如果使用Mybatis的DAO接口动态代理，则namespace必须为DAO接口的全路径-->
 <mapper namespace="lyc.java.LSpringBoot.dao.UserMapper">
-    <select id="selectUser" parameterType="string" resultType="lyc.java.LSpringBoot.dto.User">
+    <select id="selectUser" parameterType="java.lang.String" resultType="lyc.java.LSpringBoot.dto.User">
         select * from user where id = #{id}
+    </select>
+    <select id="selectAll" resultType="lyc.java.LSpringBoot.dto.User">
+        select * from user
     </select>
 </mapper>
