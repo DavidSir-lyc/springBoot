@@ -15,41 +15,51 @@ public class UserCtrl {
     @Autowired
     private UserMapper userMapper;
 
-/*    @GetMapping("tt")
-    public Map test(){
-        Map m = new HashMap();
-
-        String query = userMapper.query();
-        m.put(1, query);
-        return m;
-    }*/
-
+    /**查询全部用户*/
     @GetMapping("/getAllUser")
     public Object getAllUser(@RequestParam(value = "pageNo",required = false,defaultValue = "1") Integer pageNo, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize) {
         PageHelper.startPage(pageNo, pageSize);
-        List<User> getAllUser = userMapper.selectAll();
+        List<User> getAllUser = userMapper.selectAll(pageNo, pageSize);
         PageInfo<User> pageInfo = new PageInfo<>(getAllUser);
         return pageInfo;
     }
+    @PostMapping("/postAllUser1")
+    public Object postAllUser1(@RequestParam(value = "pageNo",required = false,defaultValue = "1") Integer pageNo, @RequestParam(value = "pageSize",required = false,defaultValue = "3") Integer pageSize){
+        PageHelper.startPage(pageNo, pageSize);
+        List<User> postAllUser = userMapper.selectAll(pageNo, pageSize);
+        PageInfo<User> pageInfo = new PageInfo<>(postAllUser);
+        return pageInfo;
+    }
+/*    @PostMapping("/postAllUser2")
+    public Object postAllUser2(@RequestBody Integer pageNo, Integer pageSize){
+        PageHelper.startPage(pageNo, pageSize);
+        List<User> postAllUser = userMapper.selectAll(pageNo, pageSize);
+        PageInfo<User> pageInfo = new PageInfo<>(postAllUser);
+        return pageInfo;
+    }*/
 
+    /**根据ID查询用户*/
     @GetMapping("/getUserById")
     public Object selectUser(@RequestParam(value = "id",required = false,defaultValue = "1") String id) {
         return userMapper.selectUser(id);
     }
 
+    /**新增用户*/
     @GetMapping("/insertUser")
     public String insertUser(@RequestParam(value = "name") String name, @RequestParam(value = "age") Integer age, @RequestParam(value = "score") Double score) {
         userMapper.insertUser(name, age, score);
         return "插入成功！";
     }
 
+    /**删除用户*/
     @GetMapping("/deleteUser")
     public String deleteUser(@RequestParam(value = "id") String id) {
         userMapper.deleteUser(id);
         return "删除成功！";
     }
 
-/*    //通过RequestMethod.GET表示请求需要时GET方式
+/*
+//通过RequestMethod.GET表示请求需要时GET方式
     @RequestMapping(value = "/getReq", method = RequestMethod.GET)
     public String getReqFun(@RequestParam(value = "umName") String umName){
         return "hello:" + umName;

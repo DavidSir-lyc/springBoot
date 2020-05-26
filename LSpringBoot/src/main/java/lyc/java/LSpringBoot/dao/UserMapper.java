@@ -20,9 +20,9 @@ public interface UserMapper {
     @Delete("delete from user where id=#{id}")
     void deleteUser(@Param("id")Integer id);*/
 
-    User selectUser(@Param("id") String id);
+    List<User> selectAll(@Param("pageNo") Integer pageNo, @Param("pageSize") Integer pageSize);
 
-    List<User> selectAll();
+    User selectUser(@Param("id") String id);
 
     void insertUser(@Param(value = "name") String name, @Param(value = "age") Integer age, @Param(value = "score") Double score);
 
