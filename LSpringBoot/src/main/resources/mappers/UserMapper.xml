@@ -10,4 +10,31 @@
     <select id="selectAll" resultType="lyc.java.LSpringBoot.dto.User">
         select * from user
     </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="java.lang.Object">
+        <!-- 实际应用开发中，应是 自增id + 生成uid(主键)
+            useGeneratedKeys：获取数据库内部生产的自增类型主键，默认为false
+            keyProperty：数据库内部生产的主键赋值给POJO的某个属性，执行插入时，从parameterType（POJO）的Id里面取出来插入
+            keyColumn：用于指定数据表中的主键，如果表中指定了主键，可省略
+            selectKey标签：返回数据生成的主键
+            order：指SELECT LAST_INSERT_ID()相对于insert执行顺序，mysql使用AFTER，oracle使用BEFORE
+            mysql的UUID生成：INSERT INTO xxx (UUID, xxx) VALUES (REPLACE(UUID(),"-",""),xxx)
+
+            返回自增类型主键：使用useGeneratedKeys，keyProperty，keyColumn三者配合这套，不用selectKey标签
+            返回非自增类型主键：使用keyColumn、keyProperty二者配合这套，与自增主键中含义一样
+        -->
+        <!--        <selectKey order="BEFORE" resultType="int">
+                    SELECT UUID()
+                </selectKey>-->
+
+        INSERT INTO user (name,age,score) VALUES(#{name},#{age},#{score})
+
+        <!--        <selectKey order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>-->
+    </insert>
+
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
 </mapper>

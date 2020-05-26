@@ -36,6 +36,19 @@ public class UserCtrl {
     public Object selectUser(@RequestParam(value = "id",required = false,defaultValue = "1") String id) {
         return userMapper.selectUser(id);
     }
+
+    @GetMapping("/insertUser")
+    public String insertUser(@RequestParam(value = "name") String name, @RequestParam(value = "age") Integer age, @RequestParam(value = "score") Double score) {
+        userMapper.insertUser(name, age, score);
+        return "插入成功！";
+    }
+
+    @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam(value = "id") String id) {
+        userMapper.deleteUser(id);
+        return "删除成功！";
+    }
+
 /*    //通过RequestMethod.GET表示请求需要时GET方式
     @RequestMapping(value = "/getReq", method = RequestMethod.GET)
     public String getReqFun(@RequestParam(value = "umName") String umName){
