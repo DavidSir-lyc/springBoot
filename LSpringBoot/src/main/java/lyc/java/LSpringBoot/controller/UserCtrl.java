@@ -1,5 +1,6 @@
 package lyc.java.LSpringBoot.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lyc.java.LSpringBoot.dao.UserMapper;
@@ -30,13 +31,17 @@ public class UserCtrl {
         PageInfo<User> pageInfo = new PageInfo<>(postAllUser);
         return pageInfo;
     }
-/*    @PostMapping("/postAllUser2")
-    public Object postAllUser2(@RequestBody Integer pageNo, Integer pageSize){
+    @PostMapping("/postAllUser2")
+    public Object postAllUser2(@RequestBody String requestParams){
+        System.out.println(requestParams);
+        System.out.println(JSON.parseObject(requestParams).get("pageNo"));
+        Integer pageNo = (Integer) JSON.parseObject(requestParams).get("pageNo");
+        Integer pageSize = (Integer) JSON.parseObject(requestParams).get("pageSize");
         PageHelper.startPage(pageNo, pageSize);
         List<User> postAllUser = userMapper.selectAll(pageNo, pageSize);
         PageInfo<User> pageInfo = new PageInfo<>(postAllUser);
         return pageInfo;
-    }*/
+    }
 
     /**根据ID查询用户*/
     @GetMapping("/getUserById")
