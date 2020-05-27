@@ -4,6 +4,7 @@ import lyc.java.LSpringBoot.dto.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -24,7 +25,7 @@ public interface UserMapper {
 
     User selectUser(@Param("id") String id);
 
-    void insertUser(@Param(value = "name") String name, @Param(value = "age") Integer age, @Param(value = "score") Double score);
+    void insertUser(@Param(value = "name") String name, @Param(value = "age") Integer age, @Param(value = "score") BigDecimal score);
 
     void deleteUser(@Param("id") String id);
 }

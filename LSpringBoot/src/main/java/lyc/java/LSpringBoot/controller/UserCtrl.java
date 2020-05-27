@@ -8,6 +8,7 @@ import lyc.java.LSpringBoot.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -33,8 +34,6 @@ public class UserCtrl {
     }
     @PostMapping("/postAllUser2")
     public Object postAllUser2(@RequestBody String requestParams){
-        System.out.println(requestParams);
-        System.out.println(JSON.parseObject(requestParams).get("pageNo"));
         Integer pageNo = (Integer) JSON.parseObject(requestParams).get("pageNo");
         Integer pageSize = (Integer) JSON.parseObject(requestParams).get("pageSize");
         PageHelper.startPage(pageNo, pageSize);
@@ -51,7 +50,15 @@ public class UserCtrl {
 
     /**新增用户*/
     @GetMapping("/insertUser")
-    public String insertUser(@RequestParam(value = "name") String name, @RequestParam(value = "age") Integer age, @RequestParam(value = "score") Double score) {
+    public String insertUser(@RequestParam(value = "name") String name, @RequestParam(value = "age") Integer age, @RequestParam(value = "score") BigDecimal score) {
+        userMapper.insertUser(name, age, score);
+        return "插入成功！";
+    }
+    @PostMapping("/postInsertUser")
+    public String postInsertUser(@RequestBody String requestParams) {
+        String name = (String) JSON.parseObject(requestParams).get("name");
+        Integer age = (Integer) JSON.parseObject(requestParams).get("age");
+        BigDecimal score = (BigDecimal) JSON.parseObject(requestParams).get("score");
         userMapper.insertUser(name, age, score);
         return "插入成功！";
     }
