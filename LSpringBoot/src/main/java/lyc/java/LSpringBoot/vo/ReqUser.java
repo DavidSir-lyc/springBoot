@@ -1,9 +1,18 @@
 package lyc.java.LSpringBoot.vo;
 
 public class ReqUser {
+    private String id;
     private String name;
     private Integer age;
     private Double score;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -27,14 +36,5 @@ public class ReqUser {
 
     public void setScore(Double score) {
         this.score = score;
-    }
-
-    @Override
-    public String toString() {
-        return "ReqUser{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", score=" + score +
-                '}';
     }
 }

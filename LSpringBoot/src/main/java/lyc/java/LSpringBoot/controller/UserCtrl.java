@@ -69,7 +69,11 @@ public class UserCtrl {
         userMapper.deleteUser(id);
         return "删除成功！";
     }
-
+    @PostMapping("/postDeleteUser")
+    public String postDeleteUser(@RequestBody ReqUser reqUser){
+        userMapper.postDeleteUser(reqUser);
+        return "删除成功！";
+    }
 
 
 

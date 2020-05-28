@@ -38,7 +38,10 @@
         INSERT INTO user (name,age,score) VALUES(#{name},#{age},#{score})
     </insert>
 
-    <delete id="deleteUser" parameterType="String">
+    <delete id="deleteUser" parameterType="string">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
+    <delete id="postDeleteUser" parameterType="lyc.java.LSpringBoot.vo.ReqUser">
         DELETE FROM user WHERE id=#{id}
     </delete>
 </mapper>

@@ -28,4 +28,5 @@ public interface UserMapper {
     void postInsertUser(ReqUser reqUser);
 
     void deleteUser(@Param("id") String id);
+    void postDeleteUser(ReqUser reqUser);
 }
