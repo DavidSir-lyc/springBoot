@@ -1,6 +1,6 @@
 package lyc.java.LSpringBoot.vo;
 
-public class reqUser {
+public class ReqUser {
     private String name;
     private Integer age;
     private Double score;
@@ -27,5 +27,14 @@ public class reqUser {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "ReqUser{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", score=" + score +
+                '}';
     }
 }

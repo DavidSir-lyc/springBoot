@@ -34,6 +34,9 @@
             SELECT LAST_INSERT_ID()
         </selectKey>-->
     </insert>
+    <insert id="postInsertUser" useGeneratedKeys="true" keyProperty="id" parameterType="lyc.java.LSpringBoot.vo.ReqUser">
+        INSERT INTO user (name,age,score) VALUES(#{name},#{age},#{score})
+    </insert>
 
     <delete id="deleteUser" parameterType="String">
         DELETE FROM user WHERE id=#{id}

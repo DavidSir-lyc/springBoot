@@ -5,7 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lyc.java.LSpringBoot.dao.UserMapper;
 import lyc.java.LSpringBoot.dto.User;
-import lyc.java.LSpringBoot.vo.reqUser;
+import lyc.java.LSpringBoot.vo.ReqUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,16 +55,12 @@ public class UserCtrl {
         return "插入成功！";
     }
     @PostMapping("/postInsertUser")
-    public String postInsertUser(@RequestBody reqUser reqUser) {
+    public String postInsertUser(@RequestBody ReqUser reqUser) {
 /*        String name = (String) JSON.parseObject(requestParams).get("name");
        Integer age = (Integer) JSON.parseObject(requestParams).get("age");
         BigDecimal score = (BigDecimal) JSON.parseObject(requestParams).get("score");*/
-        String name = reqUser.getName();
-        Integer age = reqUser.getAge();
-        Double score = reqUser.getScore();
-        userMapper.insertUser(name, age, score);
+        userMapper.postInsertUser(reqUser);
         return "插入成功！";
-//        return score;
     }
 
     /**删除用户*/
