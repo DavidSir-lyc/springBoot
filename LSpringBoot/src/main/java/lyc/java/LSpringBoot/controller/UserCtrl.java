@@ -5,10 +5,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lyc.java.LSpringBoot.dao.UserMapper;
 import lyc.java.LSpringBoot.dto.User;
+import lyc.java.LSpringBoot.vo.reqUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -50,17 +50,21 @@ public class UserCtrl {
 
     /**新增用户*/
     @GetMapping("/insertUser")
-    public String insertUser(@RequestParam(value = "name") String name, @RequestParam(value = "age") Integer age, @RequestParam(value = "score") BigDecimal score) {
+    public String insertUser(@RequestParam(value = "name") String name, @RequestParam(value = "age") Integer age, @RequestParam(value = "score") Double score) {
         userMapper.insertUser(name, age, score);
         return "插入成功！";
     }
     @PostMapping("/postInsertUser")
-    public String postInsertUser(@RequestBody String requestParams) {
-        String name = (String) JSON.parseObject(requestParams).get("name");
-        Integer age = (Integer) JSON.parseObject(requestParams).get("age");
-        BigDecimal score = (BigDecimal) JSON.parseObject(requestParams).get("score");
+    public String postInsertUser(@RequestBody reqUser reqUser) {
+/*        String name = (String) JSON.parseObject(requestParams).get("name");
+       Integer age = (Integer) JSON.parseObject(requestParams).get("age");
+        BigDecimal score = (BigDecimal) JSON.parseObject(requestParams).get("score");*/
+        String name = reqUser.getName();
+        Integer age = reqUser.getAge();
+        Double score = reqUser.getScore();
         userMapper.insertUser(name, age, score);
         return "插入成功！";
+//        return score;
     }
 
     /**删除用户*/
@@ -69,6 +73,9 @@ public class UserCtrl {
         userMapper.deleteUser(id);
         return "删除成功！";
     }
+
+
+
 
 /*
 //通过RequestMethod.GET表示请求需要时GET方式

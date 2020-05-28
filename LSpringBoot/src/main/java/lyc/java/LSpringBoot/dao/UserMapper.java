@@ -25,7 +25,7 @@ public interface UserMapper {
 
     User selectUser(@Param("id") String id);
 
-    void insertUser(@Param(value = "name") String name, @Param(value = "age") Integer age, @Param(value = "score") BigDecimal score);
+    void insertUser(@Param(value = "name") String name, @Param(value = "age") Integer age, @Param(value = "score") Double score);
 
     void deleteUser(@Param("id") String id);
 }
